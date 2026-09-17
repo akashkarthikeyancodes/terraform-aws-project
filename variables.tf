@@ -15,3 +15,8 @@ variable "key_name" {
   type        = string
   default     = "dev_cicd"
 }
+
+variable "ami_id" {
+  description = "Amazon Linux AMI ID"
+  type        = string
+}
