@@ -61,35 +61,11 @@ resource "aws_security_group" "web" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["117.242.3.185/32"]
   }
 
   tags = {
     Name = "terraform-web-sg"
-  }
-}
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-*-x86_64"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
   }
 }
 resource "aws_instance" "web" {
@@ -111,4 +87,31 @@ resource "aws_s3_bucket" "project" {
   tags = {
     Name = "terraform-project-bucket"
   }
+}
+
+resource "aws_s3_bucket_versioning" "project" {
+  bucket = aws_s3_bucket.project.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "project" {
+  bucket = aws_s3_bucket.project.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "project" {
+  bucket = aws_s3_bucket.project.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
