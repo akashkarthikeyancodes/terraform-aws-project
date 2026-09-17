@@ -20,3 +20,7 @@ variable "ami_id" {
   description = "Amazon Linux AMI ID"
   type        = string
 }
+variable "ssh_allowed_cidr" {
+  description = "CIDR block allowed to access the EC2 instance over SSH"
+  type        = string
+}
