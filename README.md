@@ -32,6 +32,38 @@ Terraform State
 S3 Remote Backend
    |
 S3 Lock File
+### Architecture Diagram
+
+```mermaid
+flowchart TB
+    Internet((Internet))
+
+    IGW[Internet Gateway]
+
+    subgraph AWS["AWS Cloud"]
+        subgraph VPC["VPC - 10.0.0.0/16"]
+            RT[Route Table]
+
+            subgraph PublicSubnet["Public Subnet - 10.0.1.0/24"]
+                SG[Security Group]
+                EC2[EC2 Instance]
+            end
+        end
+
+        S3[(S3 Project Bucket)]
+        State[(S3 Remote State)]
+    end
+
+    Internet --> IGW
+    IGW --> RT
+    RT --> PublicSubnet
+    SG --> EC2
+
+    Internet -. HTTP : 80 .-> SG
+    Admin[Administrator IP] -. SSH : 22 .-> SG
+
+    EC2 --> S3
+    Terraform[Terraform] --> State
 ## AWS Services Used
 
 - **Amazon VPC** — Provides the isolated network environment.
