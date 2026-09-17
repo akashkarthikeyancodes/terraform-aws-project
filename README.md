@@ -34,6 +34,8 @@ S3 Remote Backend
 S3 Lock File
 ### Architecture Diagram
 
+### Architecture Diagram
+
 ```mermaid
 flowchart TB
     Internet((Internet))
@@ -64,6 +66,8 @@ flowchart TB
 
     EC2 --> S3
     Terraform[Terraform] --> State
+```
+## AWS Services Used
 ## AWS Services Used
 
 - **Amazon VPC** — Provides the isolated network environment.
