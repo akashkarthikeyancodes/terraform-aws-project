@@ -94,7 +94,6 @@ flowchart TB
 - AWS security configuration
 
 ## Project Structure
-
 ```text
 terraform-aws-infrastructure/
 │
@@ -133,6 +132,7 @@ terraform {
 │
 └── bootstrap/
     └── main.tf
+````
 ## Environment Configuration
 
 The project supports separate development and production configurations using Terraform variable files.
