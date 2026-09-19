@@ -155,6 +155,7 @@ This project includes several security-focused configurations:
 - Terraform state locking is enabled using the S3 lockfile mechanism.
 - Terraform state files and generated `.terraform` files are excluded from Git using `.gitignore`.
 - EC2 uses a specific AMI ID supplied through Terraform variables.
+````
 ## Key Learning Outcomes
 
 Through this project, I practiced:
@@ -168,6 +169,7 @@ Through this project, I practiced:
 - Understanding Terraform resource dependencies
 - Using the Terraform plan/apply workflow
 - Managing infrastructure changes through Git and GitHub
+  
 ## Project Highlights
 
 ### Infrastructure as Code
@@ -212,3 +214,4 @@ terraform output
 
 # Destroy development infrastructure
 terraform destroy -var-file="environments/dev.tfvars"
+````
