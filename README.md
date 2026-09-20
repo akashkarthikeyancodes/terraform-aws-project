@@ -142,6 +142,8 @@ The project supports separate development and production configurations using Te
 ```bash
 terraform plan -var-file="environments/dev.tfvars"
 terraform apply -var-file="environments/dev.tfvars"
+terraform plan -var-file="environments/prod.tfvars"
+terraform apply -var-file="environments/prod.tfvars"
 ## Security and Best Practices
 
 This project includes several security-focused configurations:
